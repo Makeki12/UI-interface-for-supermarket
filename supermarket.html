@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Supermarket online shopping</title>
+    <marquee> Welcome all</marquee>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        #items {
+            margin: 20px 0;
+        }
+        .item {
+            border: 1px solid #ccc;
+            margin: 10px 0;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .item-details {
+            flex: 1;
+        }
+        .item-actions {
+            flex: 1;
+            text-align: right;
+        }
+        #cart {
+            margin: 20px 0;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+        #cart-items {
+            list-style: none;
+            padding: 0;
+        }
+        #cart-items li {
+            margin: 5px 0;
+        }
+        .cart-total {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome to the Supermarket!</h1>
+        <h2>Available Items</h2>
+        <div id="items">
+            <div class="item">
+                <div class="item-details">
+                    <h3>Bread</h3>
+                    <p>Price: $60.50</p>
+                </div>
+                <div class="item-actions">
+                    <button onclick="addToCart('Bread', 60.50)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-details">
+                    <h3>Milk per litre</h3>
+                    <p>Price: $50.50</p>
+                </div>
+                <div class="item-actions">
+                    <button onclick="addToCart('Milk per litre', 50.50)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-details">
+                    <h3>Eggs</h3>
+                    <p>Price: $20.00</p>
+                </div>
+                <div class="item-actions">
+                    <button onclick="addToCart('Eggs', 20.00)">Add to Cart</button>
+                </div>
+            </div>
+            <div class="item">
+                <div class="item-details">
+                    <h3>Apple</h3>
+                    <p>Price: $1.00</p>
+                </div>
+                <div class="item-actions">
+                    <button onclick="addToCart('Apple', 1.00)">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+
+        <h2>Shopping Cart</h2>
+        <div id="cart">
+            <ul id="cart-items"></ul>
+            <p class="cart-total">Total: $<span id="cart-total">0.00</span></p>
+            <button onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+
+    <script>
+        let cart = [];
+        let total = 0;
+
+        function addToCart(item, price) {
+            cart.push({ item, price });
+            total += price;
+            updateCart();
+        }
+
+        function updateCart() {
+            const cartItems = document.getElementById('cart-items');
+            cartItems.innerHTML = '';
+            cart.forEach((cartItem, index) => {
+                const li = document.createElement('li');
+                li.textContent = `${cartItem.item} - $${cartItem.price.toFixed(2)}`;
+                cartItems.appendChild(li);
+            });
+            document.getElementById('cart-total').textContent = total.toFixed(2);
+        }
+
+        function checkout() {
+            alert(`Thank you for your purchase! Total: $${total.toFixed(2)}`);
+            cart = [];
+            total = 0;
+            updateCart();
+        }
+    </script>
+</body>
+</html>
