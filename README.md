@@ -20,7 +20,7 @@ These instructions will help you set up and run the project on your local machin
 
 ### Installation
 
-1. Clone the repository or download the `index.html` file directly.
+1. Clone the repository or download the `supermarket.html` file directly.
 
     ```bash
     git clone <repository-url>
